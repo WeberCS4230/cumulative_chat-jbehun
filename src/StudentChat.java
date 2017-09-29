@@ -20,6 +20,7 @@ public class StudentChat {
 			System.out.println(s.toString());
 		}
 		
+		//printing out groups
 		System.out.println("\nGroups\n");
 		for(Group g: Groups)
 		{
@@ -28,19 +29,19 @@ public class StudentChat {
 		
 		//getting groups in an array to add chat messages and then display the messages.
 		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
-		System.out.println(Groups.size());
+		//System.out.println(Groups.size());
 		
 		addChatMessages(groupArray);
 		
 		//printing out chat messages
 		LinkedList<String> messageList = new LinkedList<String>(); 
 		
-		System.out.println("\nChat Message by group");
-		for(int i = 0 ; i < groupArray.length - 1; i++) {
+		System.out.println("\nChat Messages by group");
+		for(int i = 0 ; i < groupArray.length; i++) {
 			System.out.println("\nGroup " + (i + 1) +"\n");
 			messageList = groupArray[i].getChatLog();
 			
-			for(Object s: messageList) {
+			for(String s: messageList) {
 				System.out.println(s);
 			}
 		}
@@ -81,32 +82,32 @@ public class StudentChat {
 		//third group
 		groupArray[2].addChatMessages1("Hi");
 		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Getting cold outside");
+		groupArray[2].addChatMessages2("I know I like it");
+		groupArray[2].addChatMessages1("Glad the heat of summer is gone");
+		groupArray[2].addChatMessages2("I'm glad as well");
+		groupArray[2].addChatMessages1("How is work going");
+		groupArray[2].addChatMessages2("Good, how is your work going");
+		groupArray[2].addChatMessages1("It is going good also");
+		groupArray[2].addChatMessages2("I'm glad to hear it");
+		groupArray[2].addChatMessages1("Can't wait to go home ane eat");
+		groupArray[2].addChatMessages2("Me too");
+		groupArray[2].addChatMessages1("Have a good night");
+		groupArray[2].addChatMessages2("Good night");
 		
 		//fourth group
 		groupArray[3].addChatMessages1("Hi");
-		groupArray[3].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
+		groupArray[3].addChatMessages2("Hey");
+		groupArray[3].addChatMessages1("Things going well");
+		groupArray[3].addChatMessages2("Yes");
+		groupArray[3].addChatMessages1("How's this assignment");
+		groupArray[3].addChatMessages2("It is interesting");
+		groupArray[3].addChatMessages1("Get all of it done");
+		groupArray[3].addChatMessages2("I hope so");
+		groupArray[3].addChatMessages1("I hope I got it all done also");
+		groupArray[3].addChatMessages2("Good luck on the assignemnt");
+		groupArray[3].addChatMessages1("You to");
+		groupArray[3].addChatMessages2("Fairwell");
 		
 		
 	}
@@ -143,9 +144,9 @@ public class StudentChat {
 		s.add(new Student("Tyler", "Hoyer"));
 		s.add(new Student("Christopher", "Nash"));
 		
-		//testing set to make sure duplicate not added
-		s.add(new Student("Christopher", "Nash"));
-		s.add(new Student("Johnathan", "Mirable"));
+		////testing set to make sure duplicate not added
+		//s.add(new Student("Christopher", "Nash"));
+		//s.add(new Student("Johnathan", "Mirable"));
 	}
 	
 
