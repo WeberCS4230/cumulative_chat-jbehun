@@ -1,5 +1,3 @@
-import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 public class Group implements Comparable{
@@ -25,11 +23,11 @@ public class Group implements Comparable{
 		
 		LinkedList<String> messages = new LinkedList<String>();
 		String[] s1messages = student1.getMessage();
-		String[] s2messages = student1.getMessage();
+		String[] s2messages = student2.getMessage();
 		
 		for(int i = 0; i < s1messages.length; i++) {
-			messages.add(s1messages[i]);
-			messages.add(s2messages[i]);
+			messages.add(student1.toString()+ ": " + s1messages[i]);
+			messages.add(student2.toString()+ ": " + s2messages[i]);
 		}
 		
 		return messages;

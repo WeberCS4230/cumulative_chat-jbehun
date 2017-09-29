@@ -8,17 +8,20 @@ public class Student {
 	public Student(String first, String last) {
 		firstName = first;
 		lastName = last;
+		chat = new LinkedHashSet<String>();
 	}
 
 	//add a new message to the hashset
 	public void addMessage(String s) {
 		
-		//chat.add(s);
+		chat.add(s);
 	}
 	
 	//returns the values in the set to an array.
 	public String[] getMessage() {
-		return (String[]) chat.toArray();
+		String[] messages;
+		messages = chat.toArray(new String[chat.size()]);
+		return messages;
 	}
 	
 	//default get set methods.

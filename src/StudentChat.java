@@ -1,15 +1,13 @@
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.LinkedList;
 import java.util.TreeSet;
-
-import sun.text.normalizer.RangeValueIterator.Element;
 
 public class StudentChat {
 
 	public static void main(String[] args) {
 		
-		HashSet<Student> Students = new HashSet<Student>();
+		HashSet<Student> Students = new HashSet<Student>(); //hashset prevents duplicates
 		addStudent(Students);
 		
 		TreeSet<Group> Groups = new TreeSet<Group>(); //using treeset to order the groups
@@ -30,8 +28,22 @@ public class StudentChat {
 		
 		//getting groups in an array to add chat messages and then display the messages.
 		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
+		System.out.println(Groups.size());
 		
 		addChatMessages(groupArray);
+		
+		//printing out chat messages
+		LinkedList<String> messageList = new LinkedList<String>(); 
+		
+		System.out.println("\nChat Message by group");
+		for(int i = 0 ; i < groupArray.length - 1; i++) {
+			System.out.println("\nGroup " + (i + 1) +"\n");
+			messageList = groupArray[i].getChatLog();
+			
+			for(Object s: messageList) {
+				System.out.println(s);
+			}
+		}
 		
 		
 	}
@@ -43,28 +55,28 @@ public class StudentChat {
 		//first group
 		groupArray[0].addChatMessages1("Hi");
 		groupArray[0].addChatMessages2("Hi");
-		groupArray[0].addChatMessages1("Hi");
-		groupArray[0].addChatMessages2("Hi");
-		groupArray[0].addChatMessages1("Hi");
-		groupArray[0].addChatMessages2("Hi");
-		groupArray[0].addChatMessages1("Hi");
-		groupArray[0].addChatMessages2("Hi");
-		groupArray[0].addChatMessages1("Hi");
-		groupArray[0].addChatMessages2("Hi");
+		groupArray[0].addChatMessages1("How are you");
+		groupArray[0].addChatMessages2("Good and you");
+		groupArray[0].addChatMessages1("Good as well");
+		groupArray[0].addChatMessages2("I'm hungery");
+		groupArray[0].addChatMessages1("Get something to eat then");
+		groupArray[0].addChatMessages2("Maybe I will");
+		groupArray[0].addChatMessages1("OK");
+		groupArray[0].addChatMessages2("Goodbye");
 		
 		//second group
-		groupArray[1].addChatMessages1("Hi");
-		groupArray[1].addChatMessages2("Hi");
-		groupArray[1].addChatMessages1("Hi");
-		groupArray[1].addChatMessages2("Hi");
-		groupArray[1].addChatMessages1("Hi");
-		groupArray[1].addChatMessages2("Hi");
-		groupArray[1].addChatMessages1("Hi");
-		groupArray[1].addChatMessages2("Hi");
-		groupArray[1].addChatMessages1("Hi");
-		groupArray[1].addChatMessages2("Hi");
-		groupArray[1].addChatMessages1("Hi");
-		groupArray[1].addChatMessages2("Hi");
+		groupArray[1].addChatMessages1("Hello");
+		groupArray[1].addChatMessages2("Hey");
+		groupArray[1].addChatMessages1("What's Up");
+		groupArray[1].addChatMessages2("Nothing");
+		groupArray[1].addChatMessages1("I like hamburgers");
+		groupArray[1].addChatMessages2("I prefer pizza");
+		groupArray[1].addChatMessages1("Peperoni?");
+		groupArray[1].addChatMessages2("Combo");
+		groupArray[1].addChatMessages1("That's good");
+		groupArray[1].addChatMessages2("Cya later");
+		groupArray[1].addChatMessages1("Later");
+		groupArray[1].addChatMessages2("Bye");
 		
 		//third group
 		groupArray[2].addChatMessages1("Hi");
