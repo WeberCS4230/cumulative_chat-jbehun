@@ -1,13 +1,26 @@
+import java.util.LinkedHashSet;
 
 public class Student {
 	private String firstName, lastName;
 	private int score;
+	private LinkedHashSet<String> chat; //ordered without duplicates
 
 	public Student(String first, String last) {
 		firstName = first;
 		lastName = last;
 	}
 
+	//add a new message to the hashset
+	public void addMessage(String s) {
+		
+		//chat.add(s);
+	}
+	
+	//returns the values in the set to an array.
+	public String[] getMessage() {
+		return (String[]) chat.toArray();
+	}
+	
 	//default get set methods.
 	public void setScore(int score) {
 		this.score = score;

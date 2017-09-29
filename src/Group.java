@@ -1,4 +1,6 @@
 import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 
 public class Group implements Comparable{
 
@@ -8,6 +10,30 @@ public class Group implements Comparable{
 	{
 		student1 = s1;
 		student2 = s2;
+	}
+	
+	public void addChatMessages1(String s) {
+		student1.addMessage(s);
+	}
+	
+	public void addChatMessages2(String s) {
+		student2.addMessage(s);
+	}
+	
+	//adding the messages for the group to a list for output
+	public LinkedList<String> getChatLog(){
+		
+		LinkedList<String> messages = new LinkedList<String>();
+		String[] s1messages = student1.getMessage();
+		String[] s2messages = student1.getMessage();
+		
+		for(int i = 0; i < s1messages.length; i++) {
+			messages.add(s1messages[i]);
+			messages.add(s2messages[i]);
+		}
+		
+		return messages;
+		
 	}
 
 	public Student getStudent1() {
@@ -39,8 +65,5 @@ public class Group implements Comparable{
 	
 		return 0;
 	}
-
-
-	
 	
 }

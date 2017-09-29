@@ -12,7 +12,7 @@ public class StudentChat {
 		HashSet<Student> Students = new HashSet<Student>();
 		addStudent(Students);
 		
-		TreeSet<Group> Groups = new TreeSet<Group>();
+		TreeSet<Group> Groups = new TreeSet<Group>(); //using treeset to order the groups
 		addStudentToGroups(Groups, Students);
 		
 		//printing out list of students
@@ -28,6 +28,74 @@ public class StudentChat {
 			System.out.println(g.toString());
 		}
 		
+		//getting groups in an array to add chat messages and then display the messages.
+		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
+		
+		addChatMessages(groupArray);
+		
+		
+	}
+
+
+	private static void addChatMessages(Group[] groupArray) {
+		
+		//adding messages to each group
+		//first group
+		groupArray[0].addChatMessages1("Hi");
+		groupArray[0].addChatMessages2("Hi");
+		groupArray[0].addChatMessages1("Hi");
+		groupArray[0].addChatMessages2("Hi");
+		groupArray[0].addChatMessages1("Hi");
+		groupArray[0].addChatMessages2("Hi");
+		groupArray[0].addChatMessages1("Hi");
+		groupArray[0].addChatMessages2("Hi");
+		groupArray[0].addChatMessages1("Hi");
+		groupArray[0].addChatMessages2("Hi");
+		
+		//second group
+		groupArray[1].addChatMessages1("Hi");
+		groupArray[1].addChatMessages2("Hi");
+		groupArray[1].addChatMessages1("Hi");
+		groupArray[1].addChatMessages2("Hi");
+		groupArray[1].addChatMessages1("Hi");
+		groupArray[1].addChatMessages2("Hi");
+		groupArray[1].addChatMessages1("Hi");
+		groupArray[1].addChatMessages2("Hi");
+		groupArray[1].addChatMessages1("Hi");
+		groupArray[1].addChatMessages2("Hi");
+		groupArray[1].addChatMessages1("Hi");
+		groupArray[1].addChatMessages2("Hi");
+		
+		//third group
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		
+		//fourth group
+		groupArray[3].addChatMessages1("Hi");
+		groupArray[3].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		groupArray[2].addChatMessages1("Hi");
+		groupArray[2].addChatMessages2("Hi");
+		
 		
 	}
 
@@ -36,7 +104,7 @@ public class StudentChat {
 	private static void addStudentToGroups(TreeSet<Group> groups, HashSet<Student> students) {
 		//using an iterator to iterator over student set
 		
-		Iterator iter = students.iterator();
+		Iterator<Student> iter = students.iterator();
 		Student s1, s2;
 		
 		while(iter.hasNext()) {
