@@ -7,6 +7,9 @@ public class StudentChat {
 
 	public static void main(String[] args) {
 		
+		ChatGraphics chat = new ChatGraphics();
+		chat.setVisible(true);
+		
 		HashSet<Student> Students = new HashSet<Student>(); //hashset prevents duplicates
 		addStudent(Students);
 		
