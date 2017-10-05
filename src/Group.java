@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.*;
 
 public class Group implements Comparable<Object> {
 

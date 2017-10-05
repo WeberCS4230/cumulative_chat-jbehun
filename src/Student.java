@@ -1,4 +1,4 @@
-import java.util.LinkedHashSet;
+import java.util.*;
 
 public class Student {
 	private String firstName, lastName;

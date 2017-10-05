@@ -1,11 +1,10 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.TreeSet;
+import java.util.*;
 
 public class StudentChat {
 
 	public static void main(String[] args) {
+
+		StringBuilder previousChat = new StringBuilder();
 
 		ChatGraphics chat = new ChatGraphics();
 		chat.setVisible(true);
@@ -16,43 +15,27 @@ public class StudentChat {
 		TreeSet<Group> Groups = new TreeSet<Group>(); // using treeset to order the groups
 		addStudentToGroups(Groups, Students);
 
-		// printing out list of students
-		System.out.println("Students\n");
-		for (Student s : Students) {
-			System.out.println(s.toString());
-		}
-
-		// printing out groups
-		System.out.println("\nGroups\n");
-		for (Group g : Groups) {
-			System.out.println(g.toString());
-		}
-
-		// getting groups in an array to add chat messages and then display the
-		// messages.
 		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
-		// System.out.println(Groups.size());
 
 		addChatMessages(groupArray);
 
-		// printing out chat messages
 		LinkedList<String> messageList = new LinkedList<String>();
 
-		System.out.println("\nChat Messages by group");
 		for (int i = 0; i < groupArray.length; i++) {
-			System.out.println("\nGroup " + (i + 1) + "\n");
+			previousChat.append("\nGroup " + (i + 1) + "\n\n");
 			messageList = groupArray[i].getChatLog();
 
 			for (String s : messageList) {
-				System.out.println(s);
+				previousChat.append(s + "\n\n");
 			}
 		}
+
+		chat.addPreviousChat(previousChat.toString());
 
 	}
 
 	private static void addChatMessages(Group[] groupArray) {
 
-		// adding messages to each group
 		// first group
 		groupArray[0].addChatMessages1("Hi");
 		groupArray[0].addChatMessages2("Hi");
@@ -111,9 +94,7 @@ public class StudentChat {
 
 	}
 
-	// adding students to groups
 	private static void addStudentToGroups(TreeSet<Group> groups, HashSet<Student> students) {
-		// using an iterator to iterator over student set
 
 		Iterator<Student> iter = students.iterator();
 		Student s1, s2;
@@ -129,7 +110,6 @@ public class StudentChat {
 
 	}
 
-	// method to add students to the class
 	private static void addStudent(HashSet<Student> s) {
 		s.add(new Student("Kenyon", "Brown"));
 		s.add(new Student("Justin", "Behunin"));
@@ -140,9 +120,6 @@ public class StudentChat {
 		s.add(new Student("Tyler", "Hoyer"));
 		s.add(new Student("Christopher", "Nash"));
 
-		//// testing set to make sure duplicate not added
-		// s.add(new Student("Christopher", "Nash"));
-		// s.add(new Student("Johnathan", "Mirable"));
 	}
 
 }
