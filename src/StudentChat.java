@@ -6,57 +6,54 @@ import java.util.TreeSet;
 public class StudentChat {
 
 	public static void main(String[] args) {
-		
+
 		ChatGraphics chat = new ChatGraphics();
 		chat.setVisible(true);
-		
-		HashSet<Student> Students = new HashSet<Student>(); //hashset prevents duplicates
+
+		HashSet<Student> Students = new HashSet<Student>(); // hashset prevents duplicates
 		addStudent(Students);
-		
-		TreeSet<Group> Groups = new TreeSet<Group>(); //using treeset to order the groups
+
+		TreeSet<Group> Groups = new TreeSet<Group>(); // using treeset to order the groups
 		addStudentToGroups(Groups, Students);
-		
-		//printing out list of students
+
+		// printing out list of students
 		System.out.println("Students\n");
-		for(Student s: Students)
-		{
+		for (Student s : Students) {
 			System.out.println(s.toString());
 		}
-		
-		//printing out groups
+
+		// printing out groups
 		System.out.println("\nGroups\n");
-		for(Group g: Groups)
-		{
+		for (Group g : Groups) {
 			System.out.println(g.toString());
 		}
-		
-		//getting groups in an array to add chat messages and then display the messages.
+
+		// getting groups in an array to add chat messages and then display the
+		// messages.
 		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
-		//System.out.println(Groups.size());
-		
+		// System.out.println(Groups.size());
+
 		addChatMessages(groupArray);
-		
-		//printing out chat messages
-		LinkedList<String> messageList = new LinkedList<String>(); 
-		
+
+		// printing out chat messages
+		LinkedList<String> messageList = new LinkedList<String>();
+
 		System.out.println("\nChat Messages by group");
-		for(int i = 0 ; i < groupArray.length; i++) {
-			System.out.println("\nGroup " + (i + 1) +"\n");
+		for (int i = 0; i < groupArray.length; i++) {
+			System.out.println("\nGroup " + (i + 1) + "\n");
 			messageList = groupArray[i].getChatLog();
-			
-			for(String s: messageList) {
+
+			for (String s : messageList) {
 				System.out.println(s);
 			}
 		}
-		
-		
+
 	}
 
-
 	private static void addChatMessages(Group[] groupArray) {
-		
-		//adding messages to each group
-		//first group
+
+		// adding messages to each group
+		// first group
 		groupArray[0].addChatMessages1("Hi");
 		groupArray[0].addChatMessages2("Hi");
 		groupArray[0].addChatMessages1("How are you");
@@ -67,8 +64,8 @@ public class StudentChat {
 		groupArray[0].addChatMessages2("Maybe I will");
 		groupArray[0].addChatMessages1("OK");
 		groupArray[0].addChatMessages2("Goodbye");
-		
-		//second group
+
+		// second group
 		groupArray[1].addChatMessages1("Hello");
 		groupArray[1].addChatMessages2("Hey");
 		groupArray[1].addChatMessages1("What's Up");
@@ -81,8 +78,8 @@ public class StudentChat {
 		groupArray[1].addChatMessages2("Cya later");
 		groupArray[1].addChatMessages1("Later");
 		groupArray[1].addChatMessages2("Bye");
-		
-		//third group
+
+		// third group
 		groupArray[2].addChatMessages1("Hi");
 		groupArray[2].addChatMessages2("Hi");
 		groupArray[2].addChatMessages1("Getting cold outside");
@@ -97,8 +94,8 @@ public class StudentChat {
 		groupArray[2].addChatMessages2("Me too");
 		groupArray[2].addChatMessages1("Have a good night");
 		groupArray[2].addChatMessages2("Good night");
-		
-		//fourth group
+
+		// fourth group
 		groupArray[3].addChatMessages1("Hi");
 		groupArray[3].addChatMessages2("Hey");
 		groupArray[3].addChatMessages1("Things going well");
@@ -111,32 +108,28 @@ public class StudentChat {
 		groupArray[3].addChatMessages2("Good luck on the assignemnt");
 		groupArray[3].addChatMessages1("You to");
 		groupArray[3].addChatMessages2("Fairwell");
-		
-		
+
 	}
 
-
-	//adding students to groups
+	// adding students to groups
 	private static void addStudentToGroups(TreeSet<Group> groups, HashSet<Student> students) {
-		//using an iterator to iterator over student set
-		
+		// using an iterator to iterator over student set
+
 		Iterator<Student> iter = students.iterator();
 		Student s1, s2;
-		
-		while(iter.hasNext()) {
+
+		while (iter.hasNext()) {
 			s1 = (Student) iter.next();
-			if(!iter.hasNext()) {
+			if (!iter.hasNext()) {
 				break;
 			}
 			s2 = (Student) iter.next();
-			groups.add(new Group(s1,s2));
+			groups.add(new Group(s1, s2));
 		}
-		
+
 	}
 
-
-
-	//method to add students to the class
+	// method to add students to the class
 	private static void addStudent(HashSet<Student> s) {
 		s.add(new Student("Kenyon", "Brown"));
 		s.add(new Student("Justin", "Behunin"));
@@ -146,12 +139,10 @@ public class StudentChat {
 		s.add(new Student("Johnathan", "Mirable"));
 		s.add(new Student("Tyler", "Hoyer"));
 		s.add(new Student("Christopher", "Nash"));
-		
-		////testing set to make sure duplicate not added
-		//s.add(new Student("Christopher", "Nash"));
-		//s.add(new Student("Johnathan", "Mirable"));
-	}
-	
 
+		//// testing set to make sure duplicate not added
+		// s.add(new Student("Christopher", "Nash"));
+		// s.add(new Student("Johnathan", "Mirable"));
+	}
 
 }
