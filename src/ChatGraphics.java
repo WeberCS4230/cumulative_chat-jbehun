@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 public class ChatGraphics extends JFrame {
 
@@ -11,11 +12,12 @@ public class ChatGraphics extends JFrame {
 	private JScrollPane scrollPane;
 	private JTextArea inputText, outputText;
 	private JButton send;
+	private Font guiFont;
 
 	public ChatGraphics() {
 		super("Chat Window");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setBounds(400, 100, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		this.setBounds(400, 50, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		intializeComponents();
 	}
 
@@ -27,6 +29,8 @@ public class ChatGraphics extends JFrame {
 		outputText.setEditable(false);
 		outputText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		outputText.setMinimumSize(new Dimension(600, 250));
+		outputText.setBorder(new EmptyBorder(0, 10, 0, 0));
+		outputText.setForeground(Color.BLUE);
 
 		scrollPane = new JScrollPane(outputText);
 		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -36,7 +40,9 @@ public class ChatGraphics extends JFrame {
 		inputText = new JTextArea();
 		inputText.setMinimumSize(new Dimension(800, 150));
 		inputText.setPreferredSize(new Dimension(800, 150));
-		inputText.setMaximumSize(new Dimension(800, 150));
+		inputText.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+		inputText.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+				BorderFactory.createEmptyBorder(5, 10, 0, 0)));
 		inputText.requestFocus();
 		inputText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		chatPanel.add(inputText);
@@ -46,14 +52,20 @@ public class ChatGraphics extends JFrame {
 		send = new JButton(ctrlEnter);
 		send.setMinimumSize(new Dimension(1000, 100));
 		send.setPreferredSize(new Dimension(1000, 100));
-		send.setMaximumSize(new Dimension(1000, 100));
+		send.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		send.addMouseListener(new SendButtonListener());
-		chatPanel.add(send, Component.CENTER_ALIGNMENT);
+		send.setAlignmentX(Component.CENTER_ALIGNMENT);
+		chatPanel.add(send);
 
 		InputMap imap = chatPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		imap.put(KeyStroke.getKeyStroke("ctrl ENTER"), "addText");
 		ActionMap amap = chatPanel.getActionMap();
 		amap.put("addText", ctrlEnter);
+
+		guiFont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
+		outputText.setFont(guiFont);
+		inputText.setFont(guiFont);
+		send.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
 
 		this.add(chatPanel);
 	}
@@ -72,13 +84,13 @@ public class ChatGraphics extends JFrame {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			if(arg0.getButton() == MouseEvent.BUTTON1) {
-			addInputToOuput(inputText.getText());
-			}else {
+			if (arg0.getButton() == MouseEvent.BUTTON1) {
+				addInputToOuput(inputText.getText());
+			} else {
 				addInputToOuput("\n" + inputText.getText() + "\n");
 			}
 			inputText.requestFocus();
-			
+
 		}
 
 	}
@@ -94,6 +106,7 @@ public class ChatGraphics extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			addInputToOuput("\n" + inputText.getText() + "\n");
+			inputText.requestFocus();
 		}
 
 	}
