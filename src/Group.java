@@ -17,10 +17,8 @@ public class Group implements Comparable<Object> {
 		student2.addMessage(s);
 	}
 
-	// adding the messages for the group to a list for output
 	public LinkedList<String> getChatLog() {
 
-		// building a linked list for the 2 students in their order and returning it
 		LinkedList<String> messages = new LinkedList<String>();
 		String[] s1messages = student1.getMessage();
 		String[] s2messages = student2.getMessage();
@@ -31,7 +29,6 @@ public class Group implements Comparable<Object> {
 		}
 
 		return messages;
-
 	}
 
 	public Student getStudent1() {

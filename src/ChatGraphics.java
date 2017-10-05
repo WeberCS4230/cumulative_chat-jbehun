@@ -27,8 +27,6 @@ public class ChatGraphics extends JFrame {
 		outputText.setEditable(false);
 		outputText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		outputText.setMinimumSize(new Dimension(600, 250));
-		// outputText.setPreferredSize(new Dimension(1000, 250));
-		// outputText.setMaximumSize(new Dimension(1000, 250));
 
 		scrollPane = new JScrollPane(outputText);
 		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -49,34 +47,38 @@ public class ChatGraphics extends JFrame {
 		send.setMinimumSize(new Dimension(1000, 100));
 		send.setPreferredSize(new Dimension(1000, 100));
 		send.setMaximumSize(new Dimension(1000, 100));
-		send.addActionListener(new SendButtonListener());
+		send.addMouseListener(new SendButtonListener());
 		chatPanel.add(send, Component.CENTER_ALIGNMENT);
 
 		InputMap imap = chatPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		imap.put(KeyStroke.getKeyStroke("ctrl ENTER"), "addText");
 		ActionMap amap = chatPanel.getActionMap();
 		amap.put("addText", ctrlEnter);
-		outputText.setText("Hello");
 
 		this.add(chatPanel);
 	}
 
-	private void addInputToOuput() {
-		outputText.setText(outputText.getText() + "\n" + inputText.getText());
+	private void addInputToOuput(String input) {
+		outputText.setText(outputText.getText() + input);
 		inputText.setText("");
-
 	}
 
 	public void addPreviousChat(String chat) {
 		outputText.setText(chat);
+		inputText.requestFocus();
 	}
 
-	private class SendButtonListener implements ActionListener {
+	private class SendButtonListener extends MouseAdapter {
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			addInputToOuput();
+		public void mouseClicked(MouseEvent arg0) {
+			if(arg0.getButton() == MouseEvent.BUTTON1) {
+			addInputToOuput(inputText.getText());
+			}else {
+				addInputToOuput("\n" + inputText.getText() + "\n");
+			}
 			inputText.requestFocus();
+			
 		}
 
 	}
@@ -91,8 +93,7 @@ public class ChatGraphics extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			addInputToOuput();
-
+			addInputToOuput("\n" + inputText.getText() + "\n");
 		}
 
 	}

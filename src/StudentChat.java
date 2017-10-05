@@ -119,7 +119,6 @@ public class StudentChat {
 		s.add(new Student("Johnathan", "Mirable"));
 		s.add(new Student("Tyler", "Hoyer"));
 		s.add(new Student("Christopher", "Nash"));
-
 	}
 
 }
