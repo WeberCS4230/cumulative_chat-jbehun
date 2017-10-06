@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class Group implements Comparable{
+public class Group implements Comparable<Group> {
 
 	private Student student1, student2;
 	
@@ -10,11 +10,11 @@ public class Group implements Comparable{
 		student2 = s2;
 	}
 	
-	public void addChatMessages1(String s) {
+	public void addChatMessage1(String s) {
 		student1.addMessage(s);
 	}
 	
-	public void addChatMessages2(String s) {
+	public void addChatMessage2(String s) {
 		student2.addMessage(s);
 	}
 	
