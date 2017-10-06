@@ -18,7 +18,7 @@ public class Student {
 	}
 	
 	//returns the values in the set to an array.
-	public String[] getMessage() {
+	public String[] getMessages() {
 		String[] messages;
 		messages = chat.toArray(new String[chat.size()]);
 		return messages;
