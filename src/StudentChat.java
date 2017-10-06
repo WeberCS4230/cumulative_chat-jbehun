@@ -29,7 +29,6 @@ public class StudentChat {
 		
 		//getting groups in an array to add chat messages and then display the messages.
 		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
-		//System.out.println(Groups.size());
 		
 		addChatMessages(groupArray);
 		
@@ -134,6 +133,7 @@ public class StudentChat {
 
 
 	//method to add students to the class
+	// It says so, right there ↓
 	private static void addStudent(HashSet<Student> s) {
 		s.add(new Student("Kenyon", "Brown"));
 		s.add(new Student("Justin", "Behunin"));
@@ -143,10 +143,6 @@ public class StudentChat {
 		s.add(new Student("Johnathan", "Mirable"));
 		s.add(new Student("Tyler", "Hoyer"));
 		s.add(new Student("Christopher", "Nash"));
-		
-		////testing set to make sure duplicate not added
-		//s.add(new Student("Christopher", "Nash"));
-		//s.add(new Student("Johnathan", "Mirable"));
 	}
 	
 
