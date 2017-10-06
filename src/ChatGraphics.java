@@ -53,7 +53,7 @@ public class ChatGraphics extends JFrame {
 		send.setMinimumSize(new Dimension(1000, 100));
 		send.setPreferredSize(new Dimension(1000, 100));
 		send.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-		send.addMouseListener(new SendButtonListener());
+		send.addActionListener(new SendButtonListener());
 		send.setAlignmentX(Component.CENTER_ALIGNMENT);
 		chatPanel.add(send);
 
@@ -80,19 +80,13 @@ public class ChatGraphics extends JFrame {
 		inputText.requestFocus();
 	}
 
-	private class SendButtonListener extends MouseAdapter {
+	private class SendButtonListener implements ActionListener {
 
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			if (arg0.getButton() == MouseEvent.BUTTON1) {
-				addInputToOuput(inputText.getText());
-			} else {
-				addInputToOuput("\n" + inputText.getText() + "\n");
-			}
-			inputText.requestFocus();
-
+		public void actionPerformed(ActionEvent arg0) {
+			addInputToOuput(inputText.getText());
+			inputText.requestFocus();			
 		}
-
 	}
 
 	private class SendInputAction extends AbstractAction {
