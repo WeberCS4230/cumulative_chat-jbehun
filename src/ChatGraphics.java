@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.text.*;
 
 public class ChatGraphics extends JFrame {
 
@@ -13,7 +14,7 @@ public class ChatGraphics extends JFrame {
 	private JTextArea inputText, outputText;
 	private JButton send;
 	private Font guiFont;
-	private Client clent1;
+	private Client client1, client2;
 
 	public ChatGraphics() {
 		super("Chat Window");
@@ -24,7 +25,8 @@ public class ChatGraphics extends JFrame {
 
 	void connectClientToSever() {
 		String hostName = JOptionPane.showInputDialog(null, "Please input host to connect to");
-		clent1 = new Client("Justin", hostName, outputText);
+		client1 = new Client("Justin", hostName, outputText);
+		client2 = new Client("John", hostName, outputText);
 
 	}
 
@@ -38,6 +40,9 @@ public class ChatGraphics extends JFrame {
 		outputText.setMinimumSize(new Dimension(600, 250));
 		outputText.setBorder(new EmptyBorder(0, 10, 0, 0));
 		outputText.setForeground(Color.BLUE);
+		outputText.setAutoscrolls(true);
+		DefaultCaret caret = (DefaultCaret)outputText.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
 		scrollPane = new JScrollPane(outputText);
 		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -78,12 +83,13 @@ public class ChatGraphics extends JFrame {
 	}
 
 	private void sendMessageToClient(String input) {
-		clent1.newMessage(input);
+		client1.newMessage(input);
+		client2.newMessage(input);
 		inputText.setText("");
 	}
 
 	public void addPreviousChat(String chat) {
-		outputText.setText(outputText.getText() + chat);
+		outputText.append(chat);
 		inputText.requestFocus();
 	}
 

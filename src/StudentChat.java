@@ -8,7 +8,7 @@ public class StudentChat {
 
 		ChatGraphics chat = new ChatGraphics();
 		chat.setVisible(true);
-		chat.connectClientToSever();
+		
 
 		HashSet<Student> Students = new HashSet<Student>();
 		addStudent(Students);
@@ -32,6 +32,8 @@ public class StudentChat {
 		}
 
 		chat.addPreviousChat(previousChat.toString());
+		
+		chat.connectClientToSever();
 
 	}
 

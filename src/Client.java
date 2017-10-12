@@ -53,7 +53,7 @@ public class Client {
 		public void run() {
 			try {
 				while (true) {
-					outputText.setText(outputText.getText() + input.readLine() + "\n");
+					outputText.append(input.readLine() + "\n");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
