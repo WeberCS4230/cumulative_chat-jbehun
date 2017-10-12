@@ -15,16 +15,64 @@ public class Server {
 				Socket s = ss.accept();
 				BufferedReader read = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				PrintWriter write = new PrintWriter(s.getOutputStream());
-				if(clients.add(read.readLine())) {
+				if (clients.add(read.readLine())) {
 					write.println("ACK\n");
 					write.flush();
-				}else {
+					new Thread(new ClientHandler(s)).start();
+				} else {
 					write.println("Decline\n");
 					write.flush();
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	private class ClientHandler implements Runnable {
+
+		private BufferedReader input;
+		private PrintWriter output;
+		private Socket s;
+
+		public ClientHandler(Socket socket) {
+			try {
+				s = socket;
+				input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				output = new PrintWriter(socket.getOutputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public void run() {
+			String test = "";
+			try {
+				while (true) {
+					output.println(input.readLine());
+					output.flush();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					s.getInputStream().close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					s.getOutputStream().close();
+				} catch (IOException e) {
+
+				}
+				try {
+					s.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

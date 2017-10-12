@@ -30,11 +30,12 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void newMessage(String message) {
 		try {
 			PrintWriter writer = new PrintWriter(s.getOutputStream());
 			writer.write(message);
+			writer.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
