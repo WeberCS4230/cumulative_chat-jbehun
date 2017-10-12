@@ -15,10 +15,11 @@ public class Server {
 				Socket s = ss.accept();
 				BufferedReader read = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				PrintWriter write = new PrintWriter(s.getOutputStream());
-				if (clients.add(read.readLine())) {
+				String user = read.readLine();
+				if (clients.add(user)) {
 					write.println("ACK\n");
 					write.flush();
-					new Thread(new ClientHandler(s)).start();
+					new Thread(new ClientHandler(s, user)).start();
 				} else {
 					write.println("Decline\n");
 					write.flush();
@@ -34,12 +35,14 @@ public class Server {
 		private BufferedReader input;
 		private PrintWriter output;
 		private Socket s;
+		private String userName;
 
-		public ClientHandler(Socket socket) {
+		public ClientHandler(Socket socket, String user) {
 			try {
 				s = socket;
 				input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				output = new PrintWriter(socket.getOutputStream());
+				userName = user;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,10 +51,10 @@ public class Server {
 
 		@Override
 		public void run() {
-			String test = "";
 			try {
 				while (true) {
-					output.println(input.readLine());
+					String clientMessage = input.readLine();
+					output.println(userName + ": " + clientMessage);
 					output.flush();
 				}
 			} catch (IOException e) {
