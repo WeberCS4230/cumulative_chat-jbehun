@@ -8,12 +8,12 @@ public class StudentChat {
 
 		ChatGraphics chat = new ChatGraphics();
 		chat.setVisible(true);
-		chat.connectToClient();
+		chat.connectClientToSever();
 
-		HashSet<Student> Students = new HashSet<Student>(); // hashset prevents duplicates
+		HashSet<Student> Students = new HashSet<Student>();
 		addStudent(Students);
 
-		TreeSet<Group> Groups = new TreeSet<Group>(); // using treeset to order the groups
+		TreeSet<Group> Groups = new TreeSet<Group>();
 		addStudentToGroups(Groups, Students);
 
 		Group[] groupArray = Groups.toArray(new Group[Groups.size()]);
@@ -37,61 +37,57 @@ public class StudentChat {
 
 	private static void addChatMessages(Group[] groupArray) {
 
-		// first group
-		groupArray[0].addChatMessages1("Hi");
-		groupArray[0].addChatMessages2("Hi");
-		groupArray[0].addChatMessages1("How are you");
-		groupArray[0].addChatMessages2("Good and you");
-		groupArray[0].addChatMessages1("Good as well");
-		groupArray[0].addChatMessages2("I'm hungery");
-		groupArray[0].addChatMessages1("Get something to eat then");
-		groupArray[0].addChatMessages2("Maybe I will");
-		groupArray[0].addChatMessages1("OK");
-		groupArray[0].addChatMessages2("Goodbye");
+		groupArray[0].addStudent1ChatMessage("Hi");
+		groupArray[0].addStudent2ChatMessage("Hi");
+		groupArray[0].addStudent1ChatMessage("How are you");
+		groupArray[0].addStudent2ChatMessage("Good and you");
+		groupArray[0].addStudent1ChatMessage("Good as well");
+		groupArray[0].addStudent2ChatMessage("I'm hungery");
+		groupArray[0].addStudent1ChatMessage("Get something to eat then");
+		groupArray[0].addStudent2ChatMessage("Maybe I will");
+		groupArray[0].addStudent1ChatMessage("OK");
+		groupArray[0].addStudent2ChatMessage("Goodbye");
 
-		// second group
-		groupArray[1].addChatMessages1("Hello");
-		groupArray[1].addChatMessages2("Hey");
-		groupArray[1].addChatMessages1("What's Up");
-		groupArray[1].addChatMessages2("Nothing");
-		groupArray[1].addChatMessages1("I like hamburgers");
-		groupArray[1].addChatMessages2("I prefer pizza");
-		groupArray[1].addChatMessages1("Peperoni?");
-		groupArray[1].addChatMessages2("Combo");
-		groupArray[1].addChatMessages1("That's good");
-		groupArray[1].addChatMessages2("Cya later");
-		groupArray[1].addChatMessages1("Later");
-		groupArray[1].addChatMessages2("Bye");
+		groupArray[1].addStudent1ChatMessage("Hello");
+		groupArray[1].addStudent2ChatMessage("Hey");
+		groupArray[1].addStudent1ChatMessage("What's Up");
+		groupArray[1].addStudent2ChatMessage("Nothing");
+		groupArray[1].addStudent1ChatMessage("I like hamburgers");
+		groupArray[1].addStudent2ChatMessage("I prefer pizza");
+		groupArray[1].addStudent1ChatMessage("Peperoni?");
+		groupArray[1].addStudent2ChatMessage("Combo");
+		groupArray[1].addStudent1ChatMessage("That's good");
+		groupArray[1].addStudent2ChatMessage("Cya later");
+		groupArray[1].addStudent1ChatMessage("Later");
+		groupArray[1].addStudent2ChatMessage("Bye");
 
-		// third group
-		groupArray[2].addChatMessages1("Hi");
-		groupArray[2].addChatMessages2("Hi");
-		groupArray[2].addChatMessages1("Getting cold outside");
-		groupArray[2].addChatMessages2("I know I like it");
-		groupArray[2].addChatMessages1("Glad the heat of summer is gone");
-		groupArray[2].addChatMessages2("I'm glad as well");
-		groupArray[2].addChatMessages1("How is work going");
-		groupArray[2].addChatMessages2("Good, how is your work going");
-		groupArray[2].addChatMessages1("It is going good also");
-		groupArray[2].addChatMessages2("I'm glad to hear it");
-		groupArray[2].addChatMessages1("Can't wait to go home ane eat");
-		groupArray[2].addChatMessages2("Me too");
-		groupArray[2].addChatMessages1("Have a good night");
-		groupArray[2].addChatMessages2("Good night");
+		groupArray[2].addStudent1ChatMessage("Hi");
+		groupArray[2].addStudent2ChatMessage("Hi");
+		groupArray[2].addStudent1ChatMessage("Getting cold outside");
+		groupArray[2].addStudent2ChatMessage("I know I like it");
+		groupArray[2].addStudent1ChatMessage("Glad the heat of summer is gone");
+		groupArray[2].addStudent2ChatMessage("I'm glad as well");
+		groupArray[2].addStudent1ChatMessage("How is work going");
+		groupArray[2].addStudent2ChatMessage("Good, how is your work going");
+		groupArray[2].addStudent1ChatMessage("It is going good also");
+		groupArray[2].addStudent2ChatMessage("I'm glad to hear it");
+		groupArray[2].addStudent1ChatMessage("Can't wait to go home ane eat");
+		groupArray[2].addStudent2ChatMessage("Me too");
+		groupArray[2].addStudent1ChatMessage("Have a good night");
+		groupArray[2].addStudent2ChatMessage("Good night");
 
-		// fourth group
-		groupArray[3].addChatMessages1("Hi");
-		groupArray[3].addChatMessages2("Hey");
-		groupArray[3].addChatMessages1("Things going well");
-		groupArray[3].addChatMessages2("Yes");
-		groupArray[3].addChatMessages1("How's this assignment");
-		groupArray[3].addChatMessages2("It is interesting");
-		groupArray[3].addChatMessages1("Get all of it done");
-		groupArray[3].addChatMessages2("I hope so");
-		groupArray[3].addChatMessages1("I hope I got it all done also");
-		groupArray[3].addChatMessages2("Good luck on the assignemnt");
-		groupArray[3].addChatMessages1("You to");
-		groupArray[3].addChatMessages2("Fairwell");
+		groupArray[3].addStudent1ChatMessage("Hi");
+		groupArray[3].addStudent2ChatMessage("Hey");
+		groupArray[3].addStudent1ChatMessage("Things going well");
+		groupArray[3].addStudent2ChatMessage("Yes");
+		groupArray[3].addStudent1ChatMessage("How's this assignment");
+		groupArray[3].addStudent2ChatMessage("It is interesting");
+		groupArray[3].addStudent1ChatMessage("Get all of it done");
+		groupArray[3].addStudent2ChatMessage("I hope so");
+		groupArray[3].addStudent1ChatMessage("I hope I got it all done also");
+		groupArray[3].addStudent2ChatMessage("Good luck on the assignemnt");
+		groupArray[3].addStudent1ChatMessage("You to");
+		groupArray[3].addStudent2ChatMessage("Fairwell");
 
 	}
 

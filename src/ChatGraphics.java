@@ -13,7 +13,7 @@ public class ChatGraphics extends JFrame {
 	private JTextArea inputText, outputText;
 	private JButton send;
 	private Font guiFont;
-	private Client cl;
+	private Client clent1;
 
 	public ChatGraphics() {
 		super("Chat Window");
@@ -22,9 +22,9 @@ public class ChatGraphics extends JFrame {
 		intializeComponents();
 	}
 
-	void connectToClient() {
+	void connectClientToSever() {
 		String hostName = JOptionPane.showInputDialog(null, "Please input host to connect to");
-		cl = new Client("Justin", hostName, outputText);
+		clent1 = new Client("Justin", hostName, outputText);
 
 	}
 
@@ -77,8 +77,8 @@ public class ChatGraphics extends JFrame {
 		this.add(chatPanel);
 	}
 
-	private void addInputToOuput(String input) {
-		outputText.setText(outputText.getText() + input);
+	private void sendMessageToClient(String input) {
+		clent1.newMessage(input);
 		inputText.setText("");
 	}
 
@@ -91,7 +91,7 @@ public class ChatGraphics extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			addInputToOuput(inputText.getText());
+			sendMessageToClient(inputText.getText());
 			inputText.requestFocus();
 		}
 	}
@@ -106,7 +106,7 @@ public class ChatGraphics extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			addInputToOuput("\n" + inputText.getText() + "\n");
+			sendMessageToClient("\n" + inputText.getText() + "\n");
 			inputText.requestFocus();
 		}
 

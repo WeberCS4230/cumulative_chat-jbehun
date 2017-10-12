@@ -1,11 +1,6 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.*;
-
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class Client {
 
@@ -18,14 +13,14 @@ public class Client {
 			name = n;
 			outputText = chatOutput;
 			s = new Socket(host, 8090);
-			BufferedReader read = new BufferedReader(new InputStreamReader(s.getInputStream()));
-			PrintWriter write = new PrintWriter(s.getOutputStream());
-			write.write(name + "\n");
-			write.flush();
-			String responseString = read.readLine();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			PrintWriter writer = new PrintWriter(s.getOutputStream());
+			writer.write(name + "\n");
+			writer.flush();
+			String responseString = reader.readLine();
 			if (responseString.equals("ACK")) {
 				chatOutput.setText(chatOutput.getText() + "Connected\n");
-				new Thread(new Handler(read)).start();
+				new Thread(new InputHander(reader)).start();
 			} else if (responseString.equals("Decline")) {
 				chatOutput.setText(chatOutput.getText() + "User already connected\n");
 			} else {
@@ -35,12 +30,21 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+	
+	public void newMessage(String message) {
+		try {
+			PrintWriter writer = new PrintWriter(s.getOutputStream());
+			writer.write(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-	private class Handler implements Runnable {
+	private class InputHander implements Runnable {
 
 		private BufferedReader input;
 
-		public Handler(BufferedReader inputStream) {
+		public InputHander(BufferedReader inputStream) {
 			input = inputStream;
 		}
 
@@ -71,10 +75,4 @@ public class Client {
 			}
 		}
 	}
-
-	public static void main(String[] args) {
-		// new Client("John", "localhost");
-
-	}
-
 }

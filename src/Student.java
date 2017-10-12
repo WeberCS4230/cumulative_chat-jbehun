@@ -3,7 +3,7 @@ import java.util.*;
 public class Student {
 	private String firstName, lastName;
 	private int score;
-	private LinkedHashSet<String> chat; // ordered without duplicates
+	private LinkedHashSet<String> chat;
 
 	public Student(String first, String last) {
 		firstName = first;
@@ -16,7 +16,7 @@ public class Student {
 		chat.add(s);
 	}
 
-	public String[] getMessage() {
+	public String[] getMessages() {
 		String[] messages;
 		messages = chat.toArray(new String[chat.size()]);
 		return messages;
