@@ -4,27 +4,29 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.*;
 
+import javax.swing.JTextArea;
+
 public class Client {
 
 	private Socket s = null;
 	private String name;
 
-	public Client(String n) {
+	public Client(String n, String host, JTextArea chatOutput) {
 		try {
-			s = new Socket("localhost", 8090);
+			name = n;
+			s = new Socket(host, 8090);
 			BufferedReader read = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			PrintWriter write = new PrintWriter(s.getOutputStream());
-			write.write(n + "\n");
+			write.write(name + "\n");
 			write.flush();
 			String responseString = read.readLine();
-			System.out.println(responseString);
 			if (responseString.equals("ACK")) {
-				System.out.println("Connected");
+				chatOutput.setText(chatOutput.getText() + "Connected\n");
 			}else if(responseString.equals("Decline")){
-				System.out.println("Denied");
+				chatOutput.setText(chatOutput.getText() + "User already connected\n");
 			}
 			else  {
-				System.out.println("Connection Failed");
+				chatOutput.setText(chatOutput.getText() + "Connection failed\n");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -33,6 +35,11 @@ public class Client {
 				s.getInputStream().close();
 			} catch (IOException e) {
 				e.printStackTrace();
+			}
+			try {
+				s.getOutputStream().close();
+			} catch (IOException e) {
+				
 			}
 			try {
 				s.close();
@@ -44,7 +51,7 @@ public class Client {
 
 
 	public static void main(String[] args) {
-				new Client("John");
+				//new Client("John", "localhost");
 
 
 	}
