@@ -24,8 +24,8 @@ public class ChatGraphics extends JFrame {
 
 	void connectToClient() {
 		String hostName = JOptionPane.showInputDialog(null, "Please input host to connect to");
-		cl = new Client("Justin",hostName, outputText);
-		
+		cl = new Client("Justin", hostName, outputText);
+
 	}
 
 	private void intializeComponents() {
@@ -92,7 +92,7 @@ public class ChatGraphics extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			addInputToOuput(inputText.getText());
-			inputText.requestFocus();			
+			inputText.requestFocus();
 		}
 	}
 

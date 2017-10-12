@@ -32,7 +32,6 @@ public class StudentChat {
 		}
 
 		chat.addPreviousChat(previousChat.toString());
-		
 
 	}
 
