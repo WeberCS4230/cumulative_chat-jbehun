@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.text.*;
 
+
 public class ChatGraphics extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +15,7 @@ public class ChatGraphics extends JFrame {
 	private JTextArea inputText, outputText;
 	private JButton send;
 	private Font guiFont;
-	private Client client1;
+	private Client client;
 
 	public ChatGraphics() {
 		super("Chat Window");
@@ -26,7 +27,11 @@ public class ChatGraphics extends JFrame {
 	void connectClientToSever() {
 		String hostName = JOptionPane.showInputDialog(null, "Please input host to connect to");
 		String userName = JOptionPane.showInputDialog(null, "Please input a user name");
-		client1 = new Client(userName, hostName, outputText);
+		client = new Client(userName, hostName, outputText);
+		if (!client.isConnected()) {
+			new Thread(new StartLocalServer()).start();
+			client = new Client(userName, hostName, outputText);
+		}
 	}
 
 	private void intializeComponents() {
@@ -40,7 +45,7 @@ public class ChatGraphics extends JFrame {
 		outputText.setBorder(new EmptyBorder(0, 10, 0, 0));
 		outputText.setForeground(Color.BLUE);
 		outputText.setAutoscrolls(true);
-		DefaultCaret caret = (DefaultCaret)outputText.getCaret();
+		DefaultCaret caret = (DefaultCaret) outputText.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
 		scrollPane = new JScrollPane(outputText);
@@ -81,7 +86,7 @@ public class ChatGraphics extends JFrame {
 	}
 
 	private void sendMessageToClient(String input) {
-		client1.newMessage(input);
+		client.newMessage(input);
 		inputText.setText("");
 	}
 
@@ -104,6 +109,18 @@ public class ChatGraphics extends JFrame {
 			inputText.requestFocus();
 		}
 
+	}
+
+	private class StartLocalServer implements Runnable {
+
+		public StartLocalServer() {
+
+		}
+
+		@Override
+		public void run() {
+			new Server();
+		}
 	}
 
 }

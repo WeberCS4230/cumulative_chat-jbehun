@@ -7,6 +7,7 @@ public class Client {
 	private Socket s = null;
 	private String name;
 	private JTextArea outputText;
+	private Boolean connected = false;
 
 	public Client(String n, String host, JTextArea chatOutput) {
 		try {
@@ -20,12 +21,35 @@ public class Client {
 			String responseString = reader.readLine();
 			if (responseString.equals("ACK")) {
 				chatOutput.setText(chatOutput.getText() + "Connected\n");
+				connected = true;
 				new Thread(new InputHander(reader)).start();
 			} else if (responseString.equals("Decline")) {
 				chatOutput.setText(chatOutput.getText() + "User already connected\n");
 			} else {
 				chatOutput.setText(chatOutput.getText() + "Connection failed\n");
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Boolean isConnected() {
+		return connected;
+	}
+	
+	public void close() {
+		try {
+			s.getInputStream().close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			s.getOutputStream().close();
+		} catch (IOException e) {
+
+		}
+		try {
+			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
