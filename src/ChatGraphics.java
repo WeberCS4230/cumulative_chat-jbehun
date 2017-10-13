@@ -14,7 +14,7 @@ public class ChatGraphics extends JFrame {
 	private JTextArea inputText, outputText;
 	private JButton send;
 	private Font guiFont;
-	private Client client1, client2;
+	private Client client1;
 
 	public ChatGraphics() {
 		super("Chat Window");
@@ -25,9 +25,8 @@ public class ChatGraphics extends JFrame {
 
 	void connectClientToSever() {
 		String hostName = JOptionPane.showInputDialog(null, "Please input host to connect to");
-		client1 = new Client("Justin", hostName, outputText);
-		client2 = new Client("John", hostName, outputText);
-
+		String userName = JOptionPane.showInputDialog(null, "Please input a user name");
+		client1 = new Client(userName, hostName, outputText);
 	}
 
 	private void intializeComponents() {
@@ -65,7 +64,6 @@ public class ChatGraphics extends JFrame {
 		send.setMinimumSize(new Dimension(1000, 100));
 		send.setPreferredSize(new Dimension(1000, 100));
 		send.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-		send.addActionListener(new SendButtonListener());
 		send.setAlignmentX(Component.CENTER_ALIGNMENT);
 		chatPanel.add(send);
 
@@ -84,22 +82,12 @@ public class ChatGraphics extends JFrame {
 
 	private void sendMessageToClient(String input) {
 		client1.newMessage(input);
-		client2.newMessage(input);
 		inputText.setText("");
 	}
 
 	public void addPreviousChat(String chat) {
 		outputText.append(chat);
 		inputText.requestFocus();
-	}
-
-	private class SendButtonListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			sendMessageToClient(inputText.getText());
-			inputText.requestFocus();
-		}
 	}
 
 	private class SendInputAction extends AbstractAction {
@@ -112,7 +100,7 @@ public class ChatGraphics extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			sendMessageToClient("\n" + inputText.getText() + "\n");
+			sendMessageToClient(inputText.getText() + "\n");
 			inputText.requestFocus();
 		}
 

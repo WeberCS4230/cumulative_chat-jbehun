@@ -1,12 +1,13 @@
+import java.awt.*;
 import java.io.*;
 import java.net.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Server {
 
 	private ServerSocket ss;
 	private Set<String> clients = new HashSet<String>();
+	private ArrayList<Socket> socketList = new ArrayList<Socket>();
 
 	public Server() {
 		try {
@@ -19,6 +20,7 @@ public class Server {
 				if (clients.add(user)) {
 					write.println("ACK\n");
 					write.flush();
+					socketList.add(s);
 					new Thread(new ClientHandler(s, user)).start();
 				} else {
 					write.println("Decline\n");
@@ -53,9 +55,12 @@ public class Server {
 		public void run() {
 			try {
 				while (true) {
-					String clientMessage = input.readLine();
-					output.println(userName + ": " + clientMessage);
+					String receivedMessage = userName + ": " + input.readLine() + "\n";
+					for(Socket socket : socketList){
+					output = new PrintWriter(socket.getOutputStream());	
+					output.println(receivedMessage);
 					output.flush();
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
