@@ -29,7 +29,7 @@ public class ChatGraphics extends JFrame {
 		String userName = JOptionPane.showInputDialog(null, "Please input a user name");
 		client = new Client(userName, hostName, outputText);
 		if (!client.isConnected()) {
-			new Thread(new StartLocalServer()).start();
+			new Thread(new Server()).start();
 			client = new Client(userName, hostName, outputText);
 		}
 	}
@@ -109,18 +109,6 @@ public class ChatGraphics extends JFrame {
 			inputText.requestFocus();
 		}
 
-	}
-
-	private class StartLocalServer implements Runnable {
-
-		public StartLocalServer() {
-
-		}
-
-		@Override
-		public void run() {
-			new Server();
-		}
 	}
 
 }

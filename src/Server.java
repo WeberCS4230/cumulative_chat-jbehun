@@ -2,15 +2,25 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Server {
+public class Server implements Runnable {
 
 	private ServerSocket ss;
 	private Set<String> clients = new HashSet<String>();
 	private ArrayList<Socket> socketList = new ArrayList<Socket>();
 
 	public Server() {
+
 		try {
 			ss = new ServerSocket(8090);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void run() {
+		try {
 			while (true) {
 				Socket s = ss.accept();
 				BufferedReader read = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -29,6 +39,7 @@ public class Server {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private class ClientHandler implements Runnable {
@@ -55,10 +66,10 @@ public class Server {
 			try {
 				while (true) {
 					String receivedMessage = userName + ": " + input.readLine() + "\n";
-					for(Socket socket : socketList){
-					output = new PrintWriter(socket.getOutputStream());	
-					output.println(receivedMessage);
-					output.flush();
+					for (Socket socket : socketList) {
+						output = new PrintWriter(socket.getOutputStream());
+						output.println(receivedMessage);
+						output.flush();
 					}
 				}
 			} catch (IOException e) {
@@ -86,5 +97,4 @@ public class Server {
 	public static void main(String[] args) {
 		new Server();
 	}
-
 }
