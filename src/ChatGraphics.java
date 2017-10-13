@@ -27,9 +27,12 @@ public class ChatGraphics extends JFrame {
 	void connectClientToSever() {
 		String hostName = JOptionPane.showInputDialog(null, "Please input host to connect to");
 		String userName = JOptionPane.showInputDialog(null, "Please input a user name");
+		outputText.append("Attempting to connect to server\n");
 		client = new Client(userName, hostName, outputText);
 		if (!client.isConnected()) {
+			outputText.append("Starting a server\n");
 			new Thread(new Server()).start();
+			outputText.append("Server started\n");
 			client = new Client(userName, hostName, outputText);
 		}
 	}

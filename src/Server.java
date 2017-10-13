@@ -56,7 +56,6 @@ public class Server implements Runnable {
 				output = new PrintWriter(socket.getOutputStream());
 				userName = user;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -64,6 +63,11 @@ public class Server implements Runnable {
 		@Override
 		public void run() {
 			try {
+				for (Socket socket : socketList) {
+					output = new PrintWriter(socket.getOutputStream());
+					output.println(userName + " is now connected\n");
+					output.flush();
+				}
 				while (true) {
 					String receivedMessage = userName + ": " + input.readLine() + "\n";
 					for (Socket socket : socketList) {
@@ -74,6 +78,8 @@ public class Server implements Runnable {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+				clients.remove(userName);
+				socketList.remove(s);
 			} finally {
 				try {
 					s.getInputStream().close();
