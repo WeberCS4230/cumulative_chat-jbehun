@@ -8,8 +8,6 @@ public class ChatGraphics extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static final int DEFAULT_WIDTH = 500;
 	private static final int DEFAULT_HEIGHT = 800;
-	private JPanel chatPanel;
-	private JScrollPane scrollPane;
 	private JTextArea inputText, outputText;
 	private JButton send;
 	private Font guiFont;
@@ -22,7 +20,7 @@ public class ChatGraphics extends JFrame {
 	}
 
 	private void intializeComponents() {
-		chatPanel = new JPanel();
+		JPanel chatPanel = new JPanel();
 		chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
 
 		outputText = new JTextArea();
@@ -32,7 +30,7 @@ public class ChatGraphics extends JFrame {
 		outputText.setBorder(new EmptyBorder(0, 10, 0, 0));
 		outputText.setForeground(Color.BLUE);
 
-		scrollPane = new JScrollPane(outputText);
+		JScrollPane scrollPane = new JScrollPane(outputText);
 		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
 		scrollPane.setMinimumSize(new Dimension(600, 250));
 		chatPanel.add(scrollPane);
