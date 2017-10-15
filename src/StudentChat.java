@@ -100,11 +100,11 @@ public class StudentChat {
 		Student s1, s2;
 
 		while (iter.hasNext()) {
-			s1 = (Student) iter.next();
+			s1 = iter.next();
 			if (!iter.hasNext()) {
 				break;
 			}
-			s2 = (Student) iter.next();
+			s2 = iter.next();
 			groups.add(new Group(s1, s2));
 		}
 
