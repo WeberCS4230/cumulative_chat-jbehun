@@ -32,6 +32,7 @@ public class Server implements Runnable {
 					socketList.add(s);
 					new Thread(new ClientHandler(s, user)).start();
 				} else {
+					// Connection works, everything is as required EXCEPT the message if a client was already found is "Decline", not "DENY" -1pt
 					write.println("Decline\n");
 					write.flush();
 				}
